@@ -1,0 +1,95 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+@{
+    ViewBag.Title = "searchJobseekers2";
+    int i = 0;
+    var idk = ViewBag.a;
+}
+
+@foreach (var item in idk)
+{
+    <p>@item.JobTitle: @item.Test, @item.test2</p>
+}
+
+<br />
+
+@foreach (var item in ViewBag.Test2)
+{
+    <p>@item</p>
+}
+
+<br />
+
+@foreach (var item in ViewBag.Try)
+{
+    @item
+    <p>@i</p>
+    i++;
+}
+
+<br />
+
+@foreach (var item in ViewBag.Try2)
+{
+    @item
+    <p>@i</p>
+    i++;
+}
+
+@{i = 1; }
+
+@foreach (var item in ViewBag.Try)
+{
+    <h2>@i @item</h2>
+    foreach (var item2 in Model)
+    {
+        if(item == item2.JobTitle)
+        {
+            foreach(var item3 in ViewBag.Test2)
+            {
+
+            }
+            <p>@item2.Name @item2.Total</p>
+        }
+    }
+    i++;
+}
+
+@*
+    @foreach (var item in ViewBag.Try2)
+    {
+        <h2>1 @item</h2>
+        foreach (var item2 in Model)
+        {
+            if (item == item2.JobTitle)
+            {
+                <table style="padding:15px; width:50%; border:solid">
+                    <tr>
+                        <td>@item2.Name</td>
+                        <td style="text-align:center">@item2.Total</td>
+                    </tr>
+                </table>
+            }
+
+        }
+        <p>@i</p>
+        i++;
+    }
+
+    @foreach (var item in ViewBag.Try)
+    {
+        <h2>1 @item</h2>
+        foreach (var item2 in Model)
+        {
+            if (item == item2.JobTitle)
+            {
+                <p>2 @item2.JobTitle</p>
+                <p>3 @item2.Test</p>
+                <p>@item2.Name</p>
+                <p>@item2.Total</p>
+            }
+
+        }
+        <p>@i</p>
+        i++;
+    }
+*@

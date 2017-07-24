@@ -1,0 +1,18 @@
+﻿@model PRIS.Models.Skill
+@using PRIS.Models
+
+@{
+    ViewBag.Title = "Skill";
+}
+
+@Html.ValidationSummary(true)
+
+<div class="phoneNumber2">
+    <p>
+        @Html.HiddenFor(model => model.SkillId)
+        @Html.HiddenFor(model => model.JobseekerId)
+        @Html.EditorFor(x => x.SkillAcquired, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(x => x.DeleteSkill, new { @class = "mark-for-delete" })
+        @Html.RemoveLink("Remove", "div.phoneNumber2", "input.mark-for-delete")
+    </p>
+</div>

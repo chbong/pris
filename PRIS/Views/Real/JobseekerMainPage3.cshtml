@@ -1,0 +1,249 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "JobseekerMainPage3";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Psychometric Recruitmrnt Information System</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Try/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="~/Try/font-awesome.min.css" rel="stylesheet" />
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <!-- Plugin CSS -->
+    <link href="~/Try/magnific-popup.css" rel="stylesheet" />
+    <!-- Theme CSS -->
+    <link href="~/Try/creative.min.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #loader {
+            min-height: 680px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            background-position: center;
+            background-image: url(../Try/header.jpg);
+            color: #fff;
+        }
+
+        #background {
+            font-size: 80px;
+            font-family: 'Open Sans','Helvetica Neue',Arial,sans-serif;
+            font-weight: 700;
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s;
+        }
+
+        #myDiv {
+            display: none;
+            text-align: center;
+        }
+
+        #header {
+            min-height: 680px;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            background-size: cover;
+            -o-background-size: cover;
+            background-position: center;
+            background-image: url(../Try/header.jpg);
+            color: #fff;
+        }
+
+
+            #header .header-content {
+                padding: 100px 15px;
+            }
+
+                #header .header-content .header-content-inner h1 {
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    font-size: 50px;
+                    text-align: center;
+                    max-width: 1000px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+
+                #header .header-content .header-content-inner hr {
+                    margin: 30px auto;
+                    text-align: center;
+                }
+
+        p {
+            font-weight: 300;
+            color: rgba(255,255,255,.7);
+            font-size: 18px;
+            margin-bottom: 50px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #header .header-content {
+            position: absolute;
+            top: 50%;
+            -webkit-transform: translateY(-50%);
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            padding: 0 50px;
+        }
+    </style>
+
+</head>
+<body onload="myFunction()" style="margin:0;">
+    <div id="loader"><div id="background">PRIS<p><i class="fa fa-spinner fa-spin" style="font-size:45px"></i></p></div></div>
+    <div class="page-top" style="display:none;" id="myDiv">
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand page-scroll" href=".page-top">Home</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a class="page-scroll" href="~/Real/EmployerMainPage"><span class="glyphicon glyphicon-user"></span> Employer</a>
+                        </li>
+                        <li>
+                            <a data-toggle="modal" href="#signIn">Sign In</a>
+                        </li>
+
+                        <li>
+                            <a class="page-scroll" href="~/Real/JobseekerSignUp">Sign Up</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <section id="header">
+            <div class="header-content">
+                <div class="header-content-inner">
+                    <h1 style="text-align:center" id="homeHeading">Psychometric Recruitment Information System </h1><br />
+                    <h1>(PRIS)</h1>
+                    <hr>
+                    <p>New recruitment information system that is widely use in anywhere such as companies and universities to facilitate and automate the process of recruitment</p>
+                    <a href="#services" class="btn btn-primary btn-xl page-scroll">Find Out More</a>
+                </div>
+            </div>
+        </section>
+        <section id="services">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <h2 class="section-heading">Services</h2><br />
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-md-6">
+                        <img src="~/Try/jobseeker.jpg" class="img-circle" width="304" height="236">
+                        <h4 class="service-heading">Jobseekers</h4>
+                        <a href="~/Real/JobseekerMainPage" class="btn btn-primary btn-xl page-scroll">Find Out More</a><!--Search A Job-->
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/Try/employer-branding-mistakes.jpg" class="img-circle" width="304" height="236">
+                        <h4 class="service-heading">Employers</h4>
+                        <a href="~/Real/companyMain" class="btn btn-primary btn-xl page-scroll">Find Out More</a><!--Post A Job-->
+                    </div>
+                    <div>
+                        <a href="#about" class="btn btn-circle btn-xl page-scroll">
+                            <i class="fa fa-angle-double-down animated fa-3x"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="bg-primary" id="about">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <br /><br /><br /><h2 class="section-heading">We've got what you need!</h2>
+                        <hr class="light">
+                        <p class="text-faded"> User-friendly website with all the features you need. You can search jobs easily here at anytime and anywhere. For employers, suitable candidate can be found easily here, large network to search for the potential one</p>
+                        <a href="#contact" class="btn btn-circle btn-xl page-scroll">
+                            <i class="fa fa-angle-double-down animated fa-3x" style="color:rgba(255,255,255,.7)"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 text-center">
+                        <br /><br /><br /><br /><h2 class="section-heading">Contact Us</h2>
+                        <hr class="primary">
+                        <p style="color:black">feel free to call or to email to ask some questions or to provide some feedbacks, you will be got back as soon as possible!</p>
+                    </div>
+                    <div class="col-lg-4 col-lg-offset-2 text-center">
+                        <i class="fa fa-phone fa-3x sr-contact"></i>
+                        <p style="color:black">123-456-6789</p>
+                    </div>
+                    <div class="col-lg-4 text-center">
+                        <i class="fa fa-envelope-o fa-3x sr-contact"></i>
+                        <p style="color:black"><!--<a href="mailto:your-email@your-domain.com"></a>-->shuenee93@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- jQuery -->
+        <script src="~/Try/jquery.min.js"></script>
+        <!-- Bootstrap Core JavaScript -->
+        <script src="~/Try/bootstrap.min.js"></script>
+        <!-- Plugin JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+        <script src="~/Try/scrollreveal.min.js"></script>
+        <script src="~/Try/jquery.magnific-popup.js"></script>
+        <!-- Theme JavaScript -->
+        <script src="~/Try/creative.min.js"></script>
+        <script>
+        var myVar;
+
+        function myFunction() {
+            myVar = setTimeout(showPage, 500);
+        }
+
+        function showPage() {
+            document.getElementById("loader").style.display = "none";
+          document.getElementById("myDiv").style.display = "block";
+        }
+        </script>
+    </div>
+</body>
+</html>

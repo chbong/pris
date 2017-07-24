@@ -1,0 +1,201 @@
+﻿@model PRIS.Models.Job
+
+@{
+    Layout = null;
+    ViewBag.Title = "PostNewJobs";
+    int id = ViewBag.Id;
+}
+
+@Html.ValidationSummary(true)
+
+<head>
+    <title>Jobseeker Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DateTime/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/Scripts/DateTime/jquery.js"></script> 
+    <link href="~/Scripts/DateTime/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.rtl.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.silver.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.mobile.all.min.css" />
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+
+
+
+</head>
+
+<body>
+    <div>        
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">PRIS</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li >@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = id }, null)</li>
+                        <li class="active">@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = id }, null)</li>
+                        <li>@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = id }, null)</li>
+                        <li>@Html.ActionLink("View Jobseeker", "viewJobseeker", "Real", new { id = id }, null)</li>
+                        <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = id }, null)</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">@ViewBag.Name</span><span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content">
+
+    @using (Html.BeginForm("PostNewJobs", "Real", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="head">
+            <h1 style="padding-left:9.8%"><strong>Job Information</strong></h1>
+            <p>@ViewBag.a</p>
+            <p>@ViewBag.A</p>
+        </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="board">
+                    </div>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="step-1">
+                            <div class="col-md-12" style="padding:25px">                                
+
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.JobTitle, htmlAttributes: new { @class = "control-label" }) *
+                                        @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Salary, htmlAttributes: new { @class = "control-label" }) *
+                                        @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.Salary, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.JobRequirement, htmlAttributes: new { @class = "control-label" }) *
+                                        <br />
+                                        @Html.TextAreaFor(model => model.JobRequirement, new { style = "width:100%; height:200px", @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.JobRequirement, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.JobDescription, htmlAttributes: new { @class = "control-label" }) *
+                                        <br />
+                                        @Html.TextAreaFor(model => model.JobDescription, new { style = "width:100%; height:200px", @class = "form-control", required = "required" })
+                                        @Html.ValidationMessageFor(model => model.JobDescription, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "control-label" }) *
+                                        <br />
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.ShortDescription, htmlAttributes: new { @class = "control-label" }) *
+                                        <br />
+                                        @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control" }, required = "required" })
+                                        @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>                             
+                                
+                                <div class="col-md-12" style="padding-bottom:20px">
+                                    @Html.LabelFor(model => model.Test, htmlAttributes: new { @class = "control-label" }) *
+                                    <select class="demo form-control" id="test" name="test" style="width:100%" required>
+                                        <option value="1">Experience</option>
+                                        <option value="2">Dependent</option>                                        
+                                        <option value="3">Sociable</option>
+                                        <option value="4">High Awareness of Emotions</option>
+                                    </select>
+
+                                    @Html.ValidationMessageFor(model => model.Test, "", new { @class = "text-danger" })
+                                </div>
+                                <!--<input id="datetimepicker" name="datetimepicker" />-->
+                                <br />
+                                <div style="text-align:center; padding-top:20px"><br /><input style="text-align:center" type="submit" value="Create" class="btn btn-primary" /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>}
+        </div>
+</body>
+            
+
+<script type="text/javascript">
+    $("#datetimepicker").kendoDateTimePicker({
+        animation: false
+    });
+
+    $(document).ready(function () {
+    // create DateTimePicker from input HTML element
+        $("#datetimepicker").kendoDateTimePicker({
+             value: new Date()
+         });
+    });
+
+    $(document).ready(function () {
+        // create DateTimePicker from input HTML element
+        $('#ExpiredDate').datepicker();
+        //$("#news_date").datepicker({ dateFormat: 'dd/mm/yy' });
+    });
+
+   $(function () {
+        // This will make every element with the class "date-picker" into a DatePicker element
+        $('.date-picker').datepicker();
+   })
+
+   $('.datepicker').datepicker({
+       showOn: "both",
+       buttonImage: "../public/images/Calendar_16x16.png",
+       buttonImageOnly: "true"
+   });
+</script>

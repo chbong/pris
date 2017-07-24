@@ -1,0 +1,16 @@
+﻿@model PRIS.Models.Qualification
+    <style>
+.a {
+    background-color: #F6F9FB;
+    border:none;
+}
+        </style>
+
+<table class="table" style="padding-bottom:50px">
+    <tr>
+        <td style="width:50%">@Html.DisplayFor(x => x.Level, new { htmlAttributes = new { @class = "form-control a" } })</td>
+        <td style="width:50%">@Html.DisplayFor(x => x.FieldOfStudy, new { htmlAttributes = new { @class = "form-control a" } })</td>
+    </tr>
+</table>
+
+@*@Html.EditorFor(x => x.Level, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })*@

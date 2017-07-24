@@ -1,0 +1,263 @@
+﻿@model PRIS.Models.Test
+
+@{
+    ViewBag.Title = "TestResult";
+}
+<p>@(Model.Part1)</p>
+<html ng-app="patternfly.charts">
+<head>
+    <h2>TestResult</h2>
+    <style>
+        .morris-hover {
+            position: absolute;
+            z-index: 1000;
+        }
+
+            .morris-hover.morris-default-style {
+                border-radius: 10px;
+                padding: 6px;
+                color: #666;
+                background: rgba(255,255,255,0.8);
+                border: solid 2px rgba(230,230,230,0.8);
+                font-family: sans-serif;
+                font-size: 12px;
+                text-align: center;
+            }
+
+                .morris-hover.morris-default-style .morris-hover-row-label {
+                    font-weight: bold;
+                    margin: 0.25em 0;
+                }
+
+                .morris-hover.morris-default-style .morris-hover-point {
+                    white-space: nowrap;
+                    margin: 0.1em 0;
+                }
+    </style>
+    <script src="http://www.patternfly.org/components/jquery/dist/jquery.min.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://www.patternfly.org/components/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="http://www.patternfly.org/components/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="http://www.patternfly.org/components/c3/c3.min.js"></script>
+    <script src="http://www.patternfly.org/components/d3/d3.min.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/patternfly.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-sanitize.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-animate.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/ui-bootstrap-tpls.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-bootstrap-prettify.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/lodash.min.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-patternfly.js"></script>
+    <script src="script.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <script src="~/Scripts/Chart/Chart.js"></script>
+    <script src="~/Scripts/Chart/angular-chart.min.js"></script>
+
+
+</head>
+<body>
+    <div>
+        <p>1</p>
+        <canvas id="lineChart" width="800" height="250" style="display:none"></canvas>
+        <canvas id="radarChart" width="800" height="650" style="width:50%"></canvas>
+
+        <p>2</p>
+        <canvas id="myChart" width="200" height="200">
+            <div config="configErr" data="dataErr"></div>
+
+        </canvas>
+        <h4>Test</h4>
+        <hr />
+        <p>3</p>
+        <div ng-controller="ChartCtrl">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <label>Error Threshold</label>
+                        <div pf-donut-pct-chart config="configErr" data="dataErr"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr>
+                    </div>
+                </div>
+
+               
+            </div>
+        </div>
+        <p>4</p>
+        <div id="donut-example" style="width:30%"></div>
+        <div id="donut-example2" style="width:30%"></div>
+
+        <dl class="dl-horizontal">
+
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Part1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Part1)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Part2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Part2)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Part3)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Part3)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Part4)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Part4)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Jobseeker.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Jobseeker.Name)
+            </dd>
+
+        </dl>
+    </div>
+</body>
+</html>
+
+<script>
+    angular.module('patternfly.charts').controller('ChartCtrl', function ($scope) {
+        $scope.configErr = {
+            'chartId': 'chartErr',
+            'units': 'MB',
+            'thresholds': { 'warning': '60', 'error': '90' }
+        };
+
+        $scope.dataErr = {
+            'used': '3',
+            'total': '2'
+        };
+
+    });
+
+    $(document).ready(function () { });
+
+    $.getScript('http://www.chartjs.org/assets/Chart.js', function ($scope) {
+
+        var data = [{
+            label: "Yes",
+            value: 3,
+            color: "#F7464A"
+        }, {
+            label : "No",
+            value: 2,
+            color: "#E2EAE9"
+        }
+
+        ]
+
+        var options = {
+            animation: false
+        };
+
+        //Get the context of the canvas element we want to select
+        var c = $('#myChart');
+        var ct = c.get(0).getContext('2d');
+        var ctx = document.getElementById("myChart").getContext("2d");
+        /*************************************************************************/
+        myNewChart = new Chart(ct).Doughnut(data, options);
+
+    })
+
+    Morris.Donut({
+        element: 'donut-example',
+        data: [
+          { label: "Score", value: ((@(Model.Part1))/5*100) },
+          { label: "", value: (100 - ((@(Model.Part1))/5*100)) },
+        ],
+    });
+
+    Morris.Donut({
+        element: 'donut-example2',
+        data: [
+          { label: "Score", value: Math.round((@(Model.Part2))/30*100) },
+          { label: "", value: (100 - (Math.round((@(Model.Part2))/30*100))) },
+        ],
+    });
+
+    angular.module("app", ["chart.js"]).controller("RadarCtrl", function ($scope) {
+        $scope.labels =["Eating", "Drinking", "Sleeping", "Designing", "Coding", "Cycling", "Running"];
+
+        $scope.data = [
+          [65, 59, 90, 81, 56, 55, 40],
+          [28, 48, 40, 19, 96, 27, 100]
+        ];
+    });
+
+    //line chart data
+    var lineData = {
+
+    }
+
+    var lineOptions = {
+
+    };
+
+    var num = (@Model.Part2-4)/30*100;
+    var num2 = Math.round(num).toFixed(1);
+
+    //radar chart data
+    var radarData = {
+        labels : ["Basic Requirement","Prudence","Extraversion","Emotional Intelligence"],
+        datasets : [
+            {
+                fillColor: "rgba(63,169,245,.1)",
+                strokeColor: "rgba(63,169,245,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff",
+                data : [((@(Model.Part1))/5*100),num2,((@(Model.Part3))/40*100),((@(Model.Part4))/70*100)],
+            },
+            {
+                fillColor: "rgba(0,0,0,0)",
+                strokeColor: "rgba(0,0,0,0)",
+                pointColor : "rgba(0,0,0,0)",
+                pointStrokeColor : "#fff",
+                data : [100,100,100,100]
+            }
+        ],
+    }
+
+
+
+
+    //Create Line chart
+    var ctx = document.getElementById("lineChart").getContext("2d");
+    var myNewChart = new Chart(ctx).Line(lineData, lineOptions);
+
+    //Create Radar chart
+    var ctx2 = document.getElementById("radarChart").getContext("2d");
+    var myNewChart = new Chart(ctx2).Radar(radarData);
+
+    new Chart(ctx2).Radar(radarData,options);
+
+
+
+</script>

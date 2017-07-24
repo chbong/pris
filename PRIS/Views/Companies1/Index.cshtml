@@ -1,0 +1,81 @@
+﻿@model IEnumerable<PRIS.Models.Company>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyWebsite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyInformation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyAddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyPhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyLogo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompanyBenefits)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyWebsite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyInformation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyAddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyPhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyLogo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompanyBenefits)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PRIS.Models.WorkingExperience>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobseekerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkingExp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Jobseeker.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.JobseekerId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkingExp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Jobseeker.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WEId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WEId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WEId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "WorkingExperience";
+}
+
+@model PRIS.Models.WorkingExperience
+@using PRIS.Models
+
+@Html.ValidationSummary(true)
+<div class="phoneNumber3">
+    <p>
+        
+        @Html.HiddenFor(model => model.WEId)
+        @Html.HiddenFor(model => model.JobseekerId)
+        @Html.TextAreaFor(x => x.WorkingExp, new { style = "width:100%; height:200px", htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(x => x.DeleteWE, new { @class = "mark-for-delete" })
+        @Html.RemoveLink("Remove", "div.phoneNumber3", "input.mark-for-delete")
+    </p>
+</div>

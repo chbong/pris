@@ -1,0 +1,22 @@
+﻿@model PRIS.Models.Jobseeker
+@{
+    ViewBag.Title = "Main";
+}
+@if (ViewBag.username != null)
+{
+    <h2>Try Git</h2>
+    <h2>Hello, @ViewBag.username</h2>
+    <h2>@ViewBag.Id</h2>
+}
+
+@{ 
+    int id = ViewBag.Id;
+}
+
+<h2>Main</h2>
+
+@Html.ActionLink("View Profile", "Details", "SignUp", new { id=id }, null)<br />
+@Html.ActionLink("Job Search", "Search", "Jobs", new { id = id }, null)<br />
+@Html.ActionLink("Job Application", "", "")<br />
+@Html.ActionLink("Job Saved", "")<br />
+@Html.ActionLink("Psychometric Test", "", "")

@@ -1,0 +1,162 @@
+﻿@model PRIS.Models.Company
+
+@{
+    Layout = null;
+    ViewBag.Title = "EditCompanyDetails";
+}
+
+<head>
+    <title>Edit Company Details</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">PRIS</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active">@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = Model.CompanyId }, null)</li>
+                        <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                        <li>@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                        <li>@Html.ActionLink("Search Jobseeker", "viewJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                        <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> @Html.DisplayFor(model => model.CompanyName)<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Sign Out</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="content">
+
+        @using (Html.BeginForm("EditCompanyDetails", "Real", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            <div class="head">
+                <h1><strong>Company Information</strong></h1>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="board">
+                    </div>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="step-1">
+                            <div class="col-md-12" style="padding:25px">
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyName, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CompanyName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label" })
+                                        @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyInformation, htmlAttributes: new { @class = "control-label" })
+                                        <br />
+                                        @*Html.TextAreaFor(model => model.CompanyInformation, new { htmlAttributes = new { @class = "form-control", @style="width:100%" } })*@
+                                        @Html.TextAreaFor(model => model.CompanyInformation, new { style = "width:100%; height:200px", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CompanyInformation, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyBenefits, htmlAttributes: new { @class = "control-label" })
+                                        @Html.TextAreaFor(model => model.CompanyBenefits, new { style = "width:100%; height:200px", @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.CompanyBenefits, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <h3>Company Contact</h3>
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyPhoneNo, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CompanyPhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CompanyPhoneNo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyEmail, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CompanyEmail, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CompanyEmail, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyAddress, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CompanyAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CompanyAddress, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyWebsite, htmlAttributes: new { @class = "control-label" })
+                                        @Html.EditorFor(model => model.CompanyWebsite, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.CompanyWebsite, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <h3>Attachment</h3>
+                                <div class="col-md-12">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CompanyLogo, htmlAttributes: new { @class = "control-label" })
+                                        <input type="file" id="image1" name="image1" />
+                                        @Html.ValidationMessageFor(model => model.CompanyLogo, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div style="text-align:center">
+                                    <input type="button" class="btn btn-primary" value="Back" style="padding-right:20px; text-align:center" onclick="window.location.href='@Url.Action("CompantDetails", "Real", new { @class = "btn btn-primary", id = Model.CompanyId })';" />
+                                    <button id="step-1-next" class="btn btn-primary">Save</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</body>

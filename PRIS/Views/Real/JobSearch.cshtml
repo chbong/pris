@@ -1,0 +1,122 @@
+﻿@model IEnumerable<PRIS.Models.Job>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Index";
+    int id = ViewBag.Id;
+}
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+</head>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">PRIS</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("My Profile", "JobseekerDetails", "Real", new { id = id }, null)</li>
+                <li class="active">@Html.ActionLink("Job Search", "JobSearch", "Real", new { id = id }, null)</li>
+                <li>@Html.ActionLink("Job Application", "ViewApplication", "Real", new { id = id }, null)</li>
+                <li>@Html.ActionLink("Save Application", "ViewSavePost", "Real", new { id = id }, null)</li>
+                <li><a href="#">Psychometric Test</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                       
+                        
+                        <li><a href="#">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<h2>Index</h2>
+<h2>@ViewBag.Id</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <th>
+        Title: @Html.TextBox("SearchString")
+        <input type="submit" value="Filter" />
+    </th>
+}
+<table class="table" style="width:90%; margin:auto">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobRequirement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobRequirement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @Html.ActionLink("View", "Details", new { id = item.JobId }) |
+                @Html.ActionLink("Apply", "InsertApplication", "SignUp", new { id = item.JobId, jid = @ViewBag.Id }, null) |
+                @Html.ActionLink("Save", "SavePost", "SignUp", new { id = item.JobId, jid = @ViewBag.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

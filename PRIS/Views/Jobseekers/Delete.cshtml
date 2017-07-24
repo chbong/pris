@@ -1,0 +1,112 @@
+﻿@model PRIS.Models.Jobseeker
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Jobseeker</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qualification)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FieldOfStudy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FieldOfStudy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreferredLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreferredLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreferredSalary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreferredSalary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PreferredField)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PreferredField)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Picture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Picture)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

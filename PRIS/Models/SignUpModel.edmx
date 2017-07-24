@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SignUpModel.Store" Provider="System.Data.SqlServerCe.4.0" ProviderManifestToken="4.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+          <Property Name="ApplicationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="CompanyAddress" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyEmail" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyPhoneNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CompanyWebsite" Type="nvarchar" MaxLength="300" />
+          <Property Name="CompanyInformation" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CompanyLogo" Type="image" />
+          <Property Name="CompanyBenefits" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyId" Type="int" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="JobRequirement" Type="nvarchar" MaxLength="1000" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Location" Type="nvarchar" MaxLength="300" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="300" />
+          <Property Name="PostingDate" Type="datetime" />
+          <Property Name="ExpiredDate" Type="datetime" />
+          <Property Name="ClosingDate" Type="nvarchar" MaxLength="25" />
+          <Property Name="Salary" Type="float" />
+          <Property Name="Test" Type="int" />
+        </EntityType>
+        <EntityType Name="Jobseeker">
+          <Key>
+            <PropertyRef Name="JobseekerId" />
+          </Key>
+          <Property Name="JobseekerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PhoneNo" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Qualification" Type="nvarchar" MaxLength="100" />
+          <Property Name="FieldOfStudy" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreferredLocation" Type="nvarchar" MaxLength="100" />
+          <Property Name="PreferredField" Type="nvarchar" MaxLength="100" />
+          <Property Name="Resume" Type="image" />
+          <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="JobseekerGender" Type="nvarchar" MaxLength="25" />
+          <Property Name="Picture" Type="image" />
+          <Property Name="PreferredSalary" Type="float" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="LanguageLearned" Type="nchar" MaxLength="100" />
+          <Property Name="DeleteLanguage" Type="bit" />
+        </EntityType>
+        <EntityType Name="PreferredLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="Level" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="FieldOfStudy" Type="nvarchar" MaxLength="1000" Nullable="false" />
+          <Property Name="DeleteQualification" Type="bit" />
+        </EntityType>
+        <EntityType Name="Save">
+          <Key>
+            <PropertyRef Name="SaveId" />
+          </Key>
+          <Property Name="SaveId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="JobId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="SkillId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="SkillAcquired" Type="nvarchar" MaxLength="200" />
+          <Property Name="DeleteSkill" Type="bit" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestId" />
+          </Key>
+          <Property Name="TestId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="Part" Type="int" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="TestAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestQuestionID" Type="int" Nullable="false" />
+          <Property Name="TestScore" Type="int" Nullable="false" />
+          <Property Name="TestDescription" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Part" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="1000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkingExperience">
+          <Key>
+            <PropertyRef Name="WEId" />
+          </Key>
+          <Property Name="WEId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobseekerId" Type="int" Nullable="false" />
+          <Property Name="WorkingExp" Type="nvarchar" MaxLength="300" />
+          <Property Name="DeleteWE" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="SignUpModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" store:Type="Tables" />
+          <EntitySet Name="Jobseeker" EntityType="Self.Jobseeker" store:Type="Tables" />
+          <EntitySet Name="Language" EntityType="Self.Language" store:Type="Tables" />
+          <EntitySet Name="PreferredLocation" EntityType="Self.PreferredLocation" store:Type="Tables" />
+          <EntitySet Name="Qualification" EntityType="Self.Qualification" store:Type="Tables" />
+          <EntitySet Name="Save" EntityType="Self.Save" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" store:Type="Tables" />
+          <EntitySet Name="TestAnswer" EntityType="Self.TestAnswer" store:Type="Tables" />
+          <EntitySet Name="TestQuestion" EntityType="Self.TestQuestion" store:Type="Tables" />
+          <EntitySet Name="WorkingExperience" EntityType="Self.WorkingExperience" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SignUpModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Jobseeker">
+          <Key>
+            <PropertyRef Name="JobseekerId" />
+          </Key>
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Qualification" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FieldOfStudy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredLocation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredField" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Resume" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Languages" Relationship="SignUpModel.JobseekerLanguage" FromRole="Jobseeker" ToRole="Language" />
+          <NavigationProperty Name="Skills" Relationship="SignUpModel.JobseekerSkill" FromRole="Jobseeker" ToRole="Skill" />
+          <NavigationProperty Name="WorkingExperiences" Relationship="SignUpModel.JobseekerWorkingExperience" FromRole="Jobseeker" ToRole="WorkingExperience" />
+          <NavigationProperty Name="Applications" Relationship="SignUpModel.JobseekerApplication" FromRole="Jobseeker" ToRole="Application" />
+          <NavigationProperty Name="Saves" Relationship="SignUpModel.JobseekerSave" FromRole="Jobseeker" ToRole="Save" />
+          <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="JobseekerGender" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tests" Relationship="SignUpModel.JobseekerTest" FromRole="Jobseeker" ToRole="Test" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PreferredSalary" Type="Double" />
+          <NavigationProperty Name="Qualifications" Relationship="SignUpModel.JobseekerQualification" FromRole="Jobseeker" ToRole="Qualification" />
+        </EntityType>
+        <EntityType Name="Language">
+          <Key>
+            <PropertyRef Name="LanguageId" />
+          </Key>
+          <Property Name="LanguageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="LanguageLearned" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerLanguage" FromRole="Language" ToRole="Jobseeker" />
+          <Property Name="DeleteLanguage" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="SkillId" />
+          </Key>
+          <Property Name="SkillId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="SkillAcquired" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerSkill" FromRole="Skill" ToRole="Jobseeker" />
+          <Property Name="DeleteSkill" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="WorkingExperience">
+          <Key>
+            <PropertyRef Name="WEId" />
+          </Key>
+          <Property Name="WEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="WorkingExp" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerWorkingExperience" FromRole="WorkingExperience" ToRole="Jobseeker" />
+          <Property Name="DeleteWE" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="SignUpEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Jobseekers" EntityType="Self.Jobseeker" />
+          <EntitySet Name="Languages" EntityType="Self.Language" />
+          <EntitySet Name="Skills" EntityType="Self.Skill" />
+          <EntitySet Name="WorkingExperiences" EntityType="Self.WorkingExperience" />
+          <AssociationSet Name="JobseekerLanguage" Association="SignUpModel.JobseekerLanguage">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Language" EntitySet="Languages" />
+          </AssociationSet>
+          <AssociationSet Name="JobseekerSkill" Association="SignUpModel.JobseekerSkill">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Skill" EntitySet="Skills" />
+          </AssociationSet>
+          <AssociationSet Name="JobseekerWorkingExperience" Association="SignUpModel.JobseekerWorkingExperience">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="WorkingExperience" EntitySet="WorkingExperiences" />
+          </AssociationSet>
+          <EntitySet Name="Applications" EntityType="SignUpModel.Application" />
+          <EntitySet Name="Companies" EntityType="SignUpModel.Company" />
+          <EntitySet Name="Saves" EntityType="SignUpModel.Save" />
+          <EntitySet Name="Jobs" EntityType="SignUpModel.Job" />
+          <AssociationSet Name="CompanyJob" Association="SignUpModel.CompanyJob">
+            <End EntitySet="Companies" Role="Company" />
+            <End EntitySet="Jobs" Role="Job" />
+          </AssociationSet>
+          <AssociationSet Name="JobseekerApplication" Association="SignUpModel.JobseekerApplication">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="JobApplication" Association="SignUpModel.JobApplication">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Application" EntitySet="Applications" />
+          </AssociationSet>
+          <AssociationSet Name="JobseekerSave" Association="SignUpModel.JobseekerSave">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Save" EntitySet="Saves" />
+          </AssociationSet>
+          <AssociationSet Name="JobSave" Association="SignUpModel.JobSave">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Save" EntitySet="Saves" />
+          </AssociationSet>
+          <EntitySet Name="PreferredLocations" EntityType="SignUpModel.PreferredLocation" />
+          <EntitySet Name="Tests" EntityType="SignUpModel.Test" />
+          <AssociationSet Name="JobseekerTest" Association="SignUpModel.JobseekerTest">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Test" EntitySet="Tests" />
+          </AssociationSet>
+          <EntitySet Name="Qualifications" EntityType="SignUpModel.Qualification" />
+          <AssociationSet Name="JobseekerQualification" Association="SignUpModel.JobseekerQualification">
+            <End Role="Jobseeker" EntitySet="Jobseekers" />
+            <End Role="Qualification" EntitySet="Qualifications" />
+          </AssociationSet>
+          <EntitySet Name="TestQuestions" EntityType="SignUpModel.TestQuestion" />
+          <EntitySet Name="TestAnswers" EntityType="SignUpModel.TestAnswer" />
+          <AssociationSet Name="TestQuestionTestAnswer" Association="SignUpModel.TestQuestionTestAnswer">
+            <End Role="TestQuestion" EntitySet="TestQuestions" />
+            <End Role="TestAnswer" EntitySet="TestAnswers" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="JobseekerLanguage">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Language" Role="Language" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Language">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobseekerSkill">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Skill" Role="Skill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Skill">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobseekerWorkingExperience">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.WorkingExperience" Role="WorkingExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="WorkingExperience">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="ApplicationId" />
+          </Key>
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <Property Name="ApplicationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerApplication" FromRole="Application" ToRole="Jobseeker" />
+          <NavigationProperty Name="Job" Relationship="SignUpModel.JobApplication" FromRole="Application" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="CompanyId" />
+          </Key>
+          <Property Name="CompanyId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="CompanyName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CompanyWebsite" MaxLength="300" FixedLength="false" Unicode="true" Type="String" />
+          <Property Name="CompanyInformation" MaxLength="1000" FixedLength="false" Unicode="true" Type="String" />
+          <NavigationProperty Name="Jobs" Relationship="SignUpModel.CompanyJob" FromRole="Company" ToRole="Job" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyAddress" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyEmail" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyPhoneNo" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyLogo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="CompanyBenefits" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Save">
+          <Key>
+            <PropertyRef Name="SaveId" />
+          </Key>
+          <Property Name="SaveId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="JobId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerSave" FromRole="Save" ToRole="Jobseeker" />
+          <NavigationProperty Name="Job" Relationship="SignUpModel.JobSave" FromRole="Save" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobId" />
+          </Key>
+          <Property Name="JobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyId" Type="Int32" Nullable="false" />
+          <Property Name="JobTitle" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="JobRequirement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="JobDescription" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Company" Relationship="SignUpModel.CompanyJob" FromRole="Job" ToRole="Company" />
+          <NavigationProperty Name="Applications" Relationship="SignUpModel.JobApplication" FromRole="Job" ToRole="Application" />
+          <NavigationProperty Name="Saves" Relationship="SignUpModel.JobSave" FromRole="Job" ToRole="Save" />
+          <Property Name="ShortDescription" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="PostingDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiredDate" Type="DateTime" Precision="3" />
+          <Property Name="ClosingDate" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Double" />
+          <Property Name="Test" Type="Int32" />
+        </EntityType>
+        <Association Name="CompanyJob">
+          <End Type="SignUpModel.Company" Multiplicity="1" Role="Company" />
+          <End Type="SignUpModel.Job" Multiplicity="*" Role="Job" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="CompanyId" />
+            </Principal>
+            <Dependent Role="Job">
+              <PropertyRef Name="CompanyId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobseekerApplication">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobApplication">
+          <End Type="SignUpModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="SignUpModel.Application" Role="Application" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="Application">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobseekerSave">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Save" Role="Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Save">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="JobSave">
+          <End Type="SignUpModel.Job" Role="Job" Multiplicity="1" />
+          <End Type="SignUpModel.Save" Role="Save" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobId" />
+            </Principal>
+            <Dependent Role="Save">
+              <PropertyRef Name="JobId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="PreferredLocation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="State" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="TestId" />
+          </Key>
+          <Property Name="TestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerTest" FromRole="Test" ToRole="Jobseeker" />
+          <Property Name="Part" Type="Int32" />
+          <Property Name="Total" Type="Int32" />
+          </EntityType>
+        <Association Name="JobseekerTest">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Test" Role="Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Qualification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobseekerId" Type="Int32" Nullable="false" />
+          <Property Name="Level" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="FieldOfStudy" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Jobseeker" Relationship="SignUpModel.JobseekerQualification" FromRole="Qualification" ToRole="Jobseeker" />
+          <Property Name="DeleteQualification" Type="Boolean" />
+        </EntityType>
+        <Association Name="JobseekerQualification">
+          <End Type="SignUpModel.Jobseeker" Role="Jobseeker" Multiplicity="1" />
+          <End Type="SignUpModel.Qualification" Role="Qualification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Jobseeker">
+              <PropertyRef Name="JobseekerId" />
+            </Principal>
+            <Dependent Role="Qualification">
+              <PropertyRef Name="JobseekerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TestQuestion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Part" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TestAnswers" Relationship="SignUpModel.TestQuestionTestAnswer" FromRole="TestQuestion" ToRole="TestAnswer" />
+        </EntityType>
+        <EntityType Name="TestAnswer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestQuestionID" Type="Int32" Nullable="false" />
+          <Property Name="TestScore" Type="Int32" Nullable="false" />
+          <Property Name="TestDescription" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TestQuestion" Relationship="SignUpModel.TestQuestionTestAnswer" FromRole="TestAnswer" ToRole="TestQuestion" />
+        </EntityType>
+        <Association Name="TestQuestionTestAnswer">
+          <End Type="SignUpModel.TestQuestion" Role="TestQuestion" Multiplicity="1" />
+          <End Type="SignUpModel.TestAnswer" Role="TestAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestQuestion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TestAnswer">
+              <PropertyRef Name="TestQuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SignUpModelStoreContainer" CdmEntityContainer="SignUpEntities">
+          <EntitySetMapping Name="Jobseekers">
+            <EntityTypeMapping TypeName="SignUpModel.Jobseeker">
+              <MappingFragment StoreEntitySet="Jobseeker">
+                <ScalarProperty Name="PreferredSalary" ColumnName="PreferredSalary" />
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="JobseekerGender" ColumnName="JobseekerGender" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Qualification" ColumnName="Qualification" />
+                <ScalarProperty Name="FieldOfStudy" ColumnName="FieldOfStudy" />
+                <ScalarProperty Name="PreferredLocation" ColumnName="PreferredLocation" />
+                <ScalarProperty Name="PreferredField" ColumnName="PreferredField" />
+                <ScalarProperty Name="Resume" ColumnName="Resume" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="SignUpModel.Language">
+              <MappingFragment StoreEntitySet="Language">
+                <ScalarProperty Name="DeleteLanguage" ColumnName="DeleteLanguage" />
+                <ScalarProperty Name="LanguageId" ColumnName="LanguageId" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="LanguageLearned" ColumnName="LanguageLearned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skills">
+            <EntityTypeMapping TypeName="SignUpModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="DeleteSkill" ColumnName="DeleteSkill" />
+                <ScalarProperty Name="SkillId" ColumnName="SkillId" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="SkillAcquired" ColumnName="SkillAcquired" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkingExperiences">
+            <EntityTypeMapping TypeName="SignUpModel.WorkingExperience">
+              <MappingFragment StoreEntitySet="WorkingExperience">
+                <ScalarProperty Name="DeleteWE" ColumnName="DeleteWE" />
+                <ScalarProperty Name="WEId" ColumnName="WEId" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="WorkingExp" ColumnName="WorkingExp" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="SignUpModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="ApplicationDate" ColumnName="ApplicationDate" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="SignUpModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="CompanyBenefits" ColumnName="CompanyBenefits" />
+                <ScalarProperty Name="CompanyLogo" ColumnName="CompanyLogo" />
+                <ScalarProperty Name="CompanyPhoneNo" ColumnName="CompanyPhoneNo" />
+                <ScalarProperty Name="CompanyEmail" ColumnName="CompanyEmail" />
+                <ScalarProperty Name="CompanyAddress" ColumnName="CompanyAddress" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CompanyInformation" ColumnName="CompanyInformation" />
+                <ScalarProperty Name="CompanyWebsite" ColumnName="CompanyWebsite" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Saves">
+            <EntityTypeMapping TypeName="SignUpModel.Save">
+              <MappingFragment StoreEntitySet="Save">
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="SaveId" ColumnName="SaveId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="SignUpModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="Test" ColumnName="Test" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="ClosingDate" ColumnName="ClosingDate" />
+                <ScalarProperty Name="ExpiredDate" ColumnName="ExpiredDate" />
+                <ScalarProperty Name="PostingDate" ColumnName="PostingDate" />
+                <ScalarProperty Name="ShortDescription" ColumnName="ShortDescription" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="JobRequirement" ColumnName="JobRequirement" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
+                <ScalarProperty Name="JobId" ColumnName="JobId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreferredLocations">
+            <EntityTypeMapping TypeName="SignUpModel.PreferredLocation">
+              <MappingFragment StoreEntitySet="PreferredLocation">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="SignUpModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Part" ColumnName="Part" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="TestId" ColumnName="TestId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Qualifications">
+            <EntityTypeMapping TypeName="SignUpModel.Qualification">
+              <MappingFragment StoreEntitySet="Qualification">
+                <ScalarProperty Name="DeleteQualification" ColumnName="DeleteQualification" />
+                <ScalarProperty Name="FieldOfStudy" ColumnName="FieldOfStudy" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="JobseekerId" ColumnName="JobseekerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestQuestions">
+            <EntityTypeMapping TypeName="SignUpModel.TestQuestion">
+              <MappingFragment StoreEntitySet="TestQuestion">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Part" ColumnName="Part" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestAnswers">
+            <EntityTypeMapping TypeName="SignUpModel.TestAnswer">
+              <MappingFragment StoreEntitySet="TestAnswer">
+                <ScalarProperty Name="TestDescription" ColumnName="TestDescription" />
+                <ScalarProperty Name="TestScore" ColumnName="TestScore" />
+                <ScalarProperty Name="TestQuestionID" ColumnName="TestQuestionID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,270 @@
+﻿@model PRIS.Models.Jobseeker
+@{
+    Layout = null;
+    ViewBag.Title = "JobseekerSignUp";
+}
+@Html.ValidationSummary(true)
+
+<head>
+    <title>Jobseeker Sign Up</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link href="~/Scripts/MultipleSelect/tokenize2.css" rel="stylesheet" />
+
+</head>
+
+<div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="content">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <div class="head">
+            <h1>Jobseeker Sign Up</h1>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="board">
+                    <ul class="nav nav-tabs">
+                        <div class="liner"></div>
+                        <li rel-index="0" style="margin-left:13%">
+                            <a href="#step-1" class="btn disabled" aria-controls="step-1" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-user"></i></span>
+                            </a>
+                        </li>
+                        <li rel-index="0">
+                            <a href="#step-2" class="btn disabled" aria-controls="step-2" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-book"></i></span>
+                            </a>
+                        </li>
+                        <li rel-index="0" class="active">
+                            <a href="#step-3" class="btn" aria-controls="step-3" role="tab" data-toggle="tab">
+                                <span><i class="glyphicon glyphicon-heart"></i></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+
+                    <div role="tabpanel" class="tab-pane" id="step-1">
+                        <div class="col-md-12">
+                            <h3>Personal Infromation</h3>
+                            <div class="col-md-6">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <h3>Personal Contact</h3>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <h3>Attachment</h3>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Resume, htmlAttributes: new { @class = "control-label" })
+
+                                    @Html.ValidationMessageFor(model => model.Resume, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <button id="step-1-next" class="btn btn-lg btn-primary nextBtn pull-right">Next</button>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane" id="step-2">
+                        <div class="col-md-12">
+                            <h3>Education</h3>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Qualification, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Qualification, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Qualification, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.FieldOfStudy, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.FieldOfStudy, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FieldOfStudy, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Languages, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.Languages, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Languages, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.WorkingExperiences, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.WorkingExperiences, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingExperiences, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <button id="step-4-next" class="btn btn-lg btn-primary pull-right">Continue</button>
+                        </div>
+                    </div>
+
+                    <div role="tabpanel" class="tab-pane active" id="step-3">
+                        <div class="col-md-12">
+                            <h3>Preferences</h3>
+                            <div class="col-md-12">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PreferredField, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PreferredField, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PreferredField, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PreferredSalary, htmlAttributes: new { @class = "control-label" })
+                                    @Html.EditorFor(model => model.PreferredSalary, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.PreferredSalary, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PreferredLocation, htmlAttributes: new { @class = "control-label" })
+                                    <select class="demo" multiple id="Location" name="Location">
+                                        <option value="Johor">Johor</option>
+                                        <option value="Kedah">Kedah</option>
+                                        <option value="Kelantan">Kelantan</option>
+                                        <option value="Malacca">Malacca</option>
+                                        <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                        <option value="Pahang">Pahang</option>
+                                        <option value="Perak">Perak</option>
+                                        <option value="Perlis">Perlis</option>
+                                        <option value="Penang">Penang</option>
+                                        <option value="Sabah">Sabah</option>
+                                        <option value="Sarawak">Sarawak</option>
+                                        <option value="Selangor">Selangor</option>
+                                        <option value="Terengganu">Terengganu</option>
+                                    </select>
+
+                                    @Html.ValidationMessageFor(model => model.PreferredLocation, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <button id="step-2-next" class="btn btn-lg btn-primary nextBtn pull-right">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="~/Scripts/MultipleSelect/tokenize2.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $('.demo').tokenize2();
+
+    $('.demo').tokenize2({
+
+        // max number of tags
+        tokensMaxItems: 0,
+
+        // allow you to create custom tokens
+        tokensAllowCustom: false,
+
+        // max items in the dropdown
+        dropdownMaxItems: 10,
+
+        // minimum of characters required to start searching
+        searchMinLength: 0,
+
+        // specify if Tokenize2 will search from the begining of a string
+        searchFromStart: true,
+
+        // choose if you want your search highlighted in the result dropdown
+        searchHighlight: true,
+
+        // custom delimiter
+        delimiter: ',',
+
+        // data source
+        dataSource: 'select',
+
+        // waiting time between each search
+        debounce: 0,
+
+        // custom placeholder text
+        placeholder: false,
+
+        // enable sortable
+        // requires jQuery UI
+        sortable: false,
+
+        // tabIndex
+        tabIndex: 0
+
+    });
+
+
+
+</script>
+

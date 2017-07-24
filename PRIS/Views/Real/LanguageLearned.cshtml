@@ -1,0 +1,15 @@
+﻿@model PRIS.Models.Language
+@{
+    ViewBag.Title = "LanguageLearned";
+}
+
+<h2>LanguageLearned</h2>
+
+<div class="phoneNumber">
+    <p>
+        <label>Phone Number</label>
+        @Html.TextBoxFor(x => x.LanguageLearned)   
+        @Html.HiddenFor(x => x.LanguageId, new { @class = "mark-for-delete" })
+    </p>
+
+</div>

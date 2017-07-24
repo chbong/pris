@@ -1,0 +1,280 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+
+@{
+    Layout = null;
+    ViewBag.Title = "TestResult";
+}
+<html ng-app="patternfly.charts">
+<head>
+    <style>
+        .morris-hover {
+            position: absolute;
+            z-index: 1000;
+        }
+
+            .morris-hover.morris-default-style {
+                border-radius: 10px;
+                padding: 6px;
+                color: #666;
+                background: rgba(255,255,255,0.8);
+                border: solid 2px rgba(230,230,230,0.8);
+                font-family: sans-serif;
+                font-size: 12px;
+                text-align: center;
+            }
+
+                .morris-hover.morris-default-style .morris-hover-row-label {
+                    font-weight: bold;
+                    margin: 0.25em 0;
+                }
+
+                .morris-hover.morris-default-style .morris-hover-point {
+                    white-space: nowrap;
+                    margin: 0.1em 0;
+                }
+    </style>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+    <script src="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"></script>
+    <link href="~/Scripts/JobDisplayPanel/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+
+    <script src="http://www.patternfly.org/components/jquery/dist/jquery.min.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="http://www.patternfly.org/components/patternfly-bootstrap-combobox/js/bootstrap-combobox.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+    <script src="http://www.patternfly.org/components/bootstrap-select/dist/js/bootstrap-select.min.js"></script>
+    <script src="http://www.patternfly.org/components/patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="http://www.patternfly.org/components/c3/c3.min.js"></script>
+    <script src="http://www.patternfly.org/components/d3/d3.min.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/patternfly.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-sanitize.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-animate.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/ui-bootstrap-tpls.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-bootstrap-prettify.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/lodash.min.js"></script>
+    <script src="http://www.patternfly.org/components/angular-patternfly/dist/docs/grunt-scripts/angular-patternfly.js"></script>
+    <script src="script.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <script src="~/Scripts/Chart/Chart.js"></script>
+    <script src="~/Scripts/Chart/angular-chart.min.js"></script>
+
+    <style>
+        p{
+            font-size:18px
+        }
+    </style>
+</head>
+<body style="background-color:#16A085; font-family: 'Roboto Condensed', sans-serif;">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Search Jobseeker", "viewJobseeker", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = ViewBag.Id }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.Name<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="width:80%; margin:auto">
+        <h2 style="background-color:#FF3B3F; padding:15px; color:white"><strong>Overall Results: Competency Map</strong></h2><br />
+        <div>
+            <div style="background-color:#EFEFEF; padding:50px; height:660px">
+                <canvas id="radarChart" style="width:100%"></canvas>
+            </div>
+
+            <br />
+            <h2 style="background-color:#FF3B3F; padding:15px; color:white"><strong>Scores by Parts</strong></h2><br />
+            @foreach (var item in Model)
+            {
+            <div style="background-color:white;" class="social">
+                <table style="width:100%; text-align:center">
+                    
+                    @if (item.Part == 1)
+                    {
+                        <tr>
+                            <td style="display:none"><p  id="Part1" value="@item.Total">@item.Total</p></td>
+                            <td style="width:300px; height:350px; padding-left:50px; margin-left:20%"><div id="donut-example" style="width:100%; padding:0px"></div></td>
+                            @if ((item.Total / 4*100) <= 50)
+                            {
+                                <td style="text-align:left; padding-left:100px"><h3><strong>Part 1: Basic Requirement</strong></h3><p>High Availability and accessibility</p></td>
+                            }
+                            else
+                            {
+                                <td style="text-align:left; padding-left:100px"><h3><strong>Part 1: Basic Requirement</strong></h3><p>Low Availability and accessibility</p></td>
+                            }
+
+                        </tr>
+                    }
+
+                    @if (item.Part == 2)
+                    {
+                        <tr>
+                            <td style="display:none"><p id="Part2" value="@item.Total">@item.Total</p></td>
+                            <td style="width:300px; height:350px; padding-left:50px"><div id="donut-example2" style="width:100%; padding:0px"></div></td>
+                            @if (item.Total >= 15)
+                            {
+                                <td style="text-align:left; padding-left:100px"><h3><strong>Part 2: Prudence</strong></h3><p>Candidate is rule-abiding.</p><p> Candidate is better at following instructions and respond better to authority.</p><p> 
+                                    Candidate behaves more  appropriately, as they are able to control impulses. </p><p>Candidates is recommended when jobs require higher dependability and </p><p> organization as well as ease of supervision.</p></td>
+                            }
+                            else
+                            {
+                                <td style="text-align:left; padding-left:100px"><h3><strong>Part 2: Prudence</strong></h3><p>Candidates are more flexible and accepting of change. </p><p>Candidate is likely to take risks. </p><p>
+                                    Additionally, candidate is less rule-abiding and less conforming. </p><p>Candidate is recommended when jobs require higher flexibility and for employee to be open to change and taking risks. </p><p>Sales-oriented jobs could use candidate. </p></td>
+                            }                            
+                        </tr>
+                    }
+
+                    @if (item.Part == 3)
+                    {
+                        <tr>
+                            <td style="display:none"><p id="Part3" value="@item.Total">@item.Total</p></td>
+                            <td style="width:300px; height:350px; padding-left:50px"><div id="donut-example3" style="width:100%; padding:0px"></div></td>
+                            @if ((item.Total) >= 20)
+                            {
+                                <td style="text-align:left; padding-left:100px">
+                                    <h3><strong>Part 3: Extraversion</strong></h3><p>Candidate is more sociable and have an outgoing attitude.</p><p> Candidate show more enthusiasm and have higher energy.</p><p>
+                                        Candidate is more assertive
+                                    </p><p>Candidates is recommended for sales and service-oriented jobs because </p><p> these jobs require sociable and assertive attitudes.</p>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="text-align:left; padding-left:100px">
+                                    <h3><strong>Part 3: Extraversion</strong></h3><p>Candidate is more reserved and tend to be more quiet. </p><p>Candidate is better suited to take on jobs which require quiet concentration. </p><p>
+                                        Additionally, candidate is less rule-abiding and less conforming.
+                                    </p><p>Candidate is recommended For administrative or writing jobs. </p><p>Sales-oriented jobs could use candidate because these jobs require a higher level of introspection. </p>
+                                </td>
+                            }      
+                        </tr>
+                    }
+
+                    @if (item.Part == 4)
+                    {
+                        <tr>
+                            <td style="display:none"><p id="Part4" value="@item.Total">@item.Total</p></td>
+                            <td style="width:300px; height:350px; padding-left:50px"><div id="donut-example4" style="width:100%; padding:0px"></div></td>
+                            @if ((item.Total) >=35)
+                            {
+                                <td style="text-align:left; padding-left:100px">
+                                    <h3><strong>Part 4: Emotional Intelligence</strong></h3><p>Candidate is rule-abiding.</p><p> Candidate is more likely to engage in a diverse variety of emotionally intelligent </p><p> behaviours relevant to identification of emotions in self and others, reasoning of emotions </p><p>and general management of emotions.</p><p>
+                                        Candidate is better at reading the emotions in themselves and others around them, and </p><p> know how to regulate them.
+                                    </p><p>For jobs that require perception and/or expression of emotions appropriately, and </p><p> for employees to be calmed under pressure, these candidates are more suitable.</p>
+                                </td>
+                            }
+                            else
+                            {
+                                <td style="text-align:left; padding-left:100px">
+                                    <h3><strong>Part 4: Emotional Intelligence</strong></h3><p>Less emotionally intelligent candidate. </p><p>Candidate is less adept, in one or more of the following aspects: reading the emotions in themselves and </p><p>others around them, making sense of them and regulating said emotions. </p><p>
+                                       Candidate is more easily emotionally affected or alternatively, less responsive emotionally.
+                                    </p>
+                                </td>
+                            }                                   
+                        </tr>
+                    }
+                    
+                </table>
+            </div>}
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    var a = $('#Part1').text();
+    var b = $('#Part2').text();
+    var c = $('#Part3').text();
+    var d = $('#Part4').text();
+
+    var score1 = Math.round((a) / 4 * 100);
+
+   // alert(a); alert(b); alert(c); alert(d);
+
+     Morris.Donut({
+            element: 'donut-example',
+        data: [
+              { label: "Score", value: Math.round((a) / 4 * 100) },
+          { label: "", value: (100 - (Math.round((a) / 4 * 100))) },
+        ],
+        });
+
+    Morris.Donut({
+        element: 'donut-example2',
+        data: [
+          { label: "Score", value: Math.round((b)/30*100) },
+          { label: "", value: (100 - (Math.round((b)/30*100))) },
+        ],
+    });
+
+    Morris.Donut({
+        element: 'donut-example3',
+        data: [
+          { label: "Score", value: Math.round((c)/40*100) },
+          { label: "", value: (100 - (Math.round((c)/40*100))) },
+        ],
+    });
+
+    Morris.Donut({
+        element: 'donut-example4',
+        data: [
+          { label: "Score", value: Math.round((d)/70*100) },
+          { label: "", value: (100 - (Math.round((d)/70*100))) },
+        ],
+    });
+
+    //radar chart data
+    var radarData = {
+        labels : ["Basic Requirement","Prudence","Extraversion","Emotional Intelligence"],
+        datasets : [
+            {
+                fillColor: "rgba(63,169,245,.1)",
+                strokeColor: "rgba(63,169,245,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff",
+                data : [((a)/4*100),((b)/30*100),((c)/40*100),((d)/70*100)],
+            },
+            {
+                fillColor: "rgba(0,0,0,0)",
+                strokeColor: "rgba(0,0,0,0)",
+                pointColor : "rgba(0,0,0,0)",
+                pointStrokeColor : "#fff",
+                data : [100,100,100,100]
+            }
+        ],
+    }
+
+    //Create Radar chart
+    var ctx2 = document.getElementById("radarChart").getContext("2d");
+    var myNewChart = new Chart(ctx2).Radar(radarData);
+
+    new Chart(ctx2).Radar(radarData, options);
+
+
+</script>

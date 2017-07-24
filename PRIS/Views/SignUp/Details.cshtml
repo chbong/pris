@@ -1,0 +1,61 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.JobseekerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SkillAcquired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LanguageLearned)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkingExp)
+        </th>
+
+
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobseekerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SkillAcquired)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LanguageLearned)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkingExp)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.JobseekerId }) 
+            </td>
+        </tr>
+    }
+    
+
+</table>

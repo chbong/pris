@@ -1,0 +1,52 @@
+﻿@model IEnumerable<PRIS.Models.Application>
+
+@{
+    ViewBag.Title = "Display Applied Jobseekers";
+}
+
+<body style="background-color:white">
+    <h2>Display Applied Jobseekers</h2>
+
+    <p>
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jobseeker.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job.JobTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Job.CompanyId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jobseeker.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job.JobTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Job.CompanyId)
+                </td>
+                <td>
+                    
+                    @Html.ActionLink("Details", "Details", new { id = item.ApplicationId }) 
+                </td>
+            </tr>
+        }
+
+    </table>
+</body>

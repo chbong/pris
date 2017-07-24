@@ -1,0 +1,149 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+
+@{
+    Layout = null;
+    ViewBag.Title = "TestResult";
+}
+
+<html ng-app="patternfly.charts">
+<head>    
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+    <script src="~/Scripts/Chart/Chart.js"></script>
+    <script src="~/Scripts/Chart/angular-chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Profile", "ViewJobseekerDetails", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Job Search", "JobseekerJobSearch", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Job Application", "ViewApplication", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Save Application", "ViewSavePost", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li class="active">@Html.ActionLink("Psychometric Test", "JobseekerViewTestResult", "Real", new { id = ViewBag.Id }, null)</li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.Name<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           
+                            
+                            <li><a href="~/Real/JobseekerMain2">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <p>Maximum is: <span id="max"></span></p>
+    @if (ViewBag.Error != null)
+    {
+        <h4 style="padding:15px; margin:auto; color:red; width:80%">* @ViewBag.Error</h4>
+    }
+    
+    <h2 style="background-color:#FF3B3F; padding:15px; margin:auto; color:white; width:80%"><strong>Overall Results: Competency Map</strong></h2><br />
+    @foreach (var item in Model)
+    {
+        if (item.Part == 1)
+        {
+            <p id="Part1" style="display:none" value="@item.Total">@item.Total</p>
+        }
+
+        if (item.Part == 2)
+        {
+            <p id="Part2" style="display:none" value="@item.Total">@item.Total</p>
+        }
+
+        if (item.Part == 3)
+        {
+            <p id="Part3" style="display:none" value="@item.Total">@item.Total</p>
+        }
+
+        if (item.Part == 4)
+        {
+            <p id="Part4" style="display:none" value="@item.Total">@item.Total</p>
+        }
+    }
+        <div style="background-color:#EFEFEF; margin:auto; height:650px; text-align:center; padding:50px; width:80%">
+            <canvas id="radarChart" width="800" height="500" style="width:80%;"></canvas>        
+        </div><br /><br />
+        <p style="border:solid; border-color:red; margin:auto; background-color:#FF3B3F; height:200px; color:white; font-size:25px; width:80%; text-align:center">Description Goes Here...</p><br /><br />
+    
+</body>
+</html>
+
+<script>
+    var a = $('#Part1').text();
+    var b = $('#Part2').text();
+    var c = $('#Part3').text();
+    var d = $('#Part4').text();
+    //radar chart data
+    var radarData = {
+        labels : ["Basic Requirement","Prudence","Extraversion","Emotional Intelligence"],
+        datasets : [
+            {
+                fillColor: "rgba(63,169,245,.1)",
+                strokeColor: "rgba(63,169,245,1)",
+                pointColor : "rgba(151,187,205,1)",
+                pointStrokeColor : "#fff",
+                data : [((a)/5*100),((b)/30*100),((c)/40*100),((d)/70*100)],
+            },
+            {
+                fillColor: "rgba(0,0,0,0)",
+                strokeColor: "rgba(0,0,0,0)",
+                pointColor : "rgba(0,0,0,0)",
+                pointStrokeColor : "#fff",
+                data : [100,100,100,100]
+            }
+        ],
+    }
+
+    //Create Radar chart
+    var ctx2 = document.getElementById("radarChart").getContext("2d");
+    var myNewChart = new Chart(ctx2).Radar(radarData);
+
+    new Chart(ctx2).Radar(radarData,options);
+
+    var part1 = (a) / 5 * 100;
+    var part2 = (b) / 30 * 100;
+    var part3 = (c) / 40 * 100;
+    var part4 = (d) / 70 * 100;
+
+    var i = 1;
+    var max = {
+        name: 'none',
+        val: 0
+    };
+    while (nextItem = window['part' + i]) {
+        if (nextItem > max.val) {
+            max = {
+                name: 'part' + i,
+                val: nextItem
+            };
+        };
+        i++;
+    };
+    document.getElementById('max').innerHTML = max.name + ' = ' + max.val;
+
+
+
+</script>

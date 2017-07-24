@@ -1,0 +1,101 @@
+﻿@model PRIS.Models.Job
+@{
+    Layout = null;
+    ViewBag.Title = "JobDetails";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+    <script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li class="active">@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Search Jobseeker", "viewJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">@Model.Company.CompanyName<span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                           
+                            
+                            <li><a href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h2>JobDetails</h2>
+
+    <div style="width:80%; margin-left:10%">
+        
+        <div class="col-md-12">
+            <h2><strong>@Html.DisplayNameFor(modelItem => Model.JobTitle) : @Html.DisplayFor(modelItem => Model.Company.CompanyName)</strong></h2><br />
+        </div>
+
+        <div style="width:50%; float:right; font-size:25px; color:white">
+            <div class="col-md-12" style="color:white">
+                <h5>@Html.DisplayNameFor(modelItem => Model.Location)</h5>
+                <p>@Html.DisplayFor(modelItem => Model.Location)</p>
+            </div>
+
+            <div class="col-md-12">
+                <h5>@Html.DisplayNameFor(modelItem => Model.PostingDate)</h5>
+                <p>@Html.DisplayFor(modelItem => Model.PostingDate)</p>
+
+                <h5>@Html.DisplayNameFor(modelItem => Model.ShortDescription)</h5>
+                <p>@Html.DisplayFor(modelItem => Model.ShortDescription)</p>
+            </div>
+        </div>
+
+        <div style="width:50%; font-size:45px">
+            <div class="col-md-12" style="color:black; font-size:45px" >
+                <h5><strong>@Html.DisplayNameFor(modelItem => Model.JobDescription)</strong></h5>                
+            </div>
+            <div class="col-md-12"  style="color:white; font-size:25px" >                
+                <p>@Html.DisplayFor(modelItem => Model.JobDescription)</p>
+            </div>
+
+            <div class="col-md-12" style="color:white; font-size:25px">
+                <h5>@Html.DisplayNameFor(modelItem => Model.JobRequirement)</h5>
+                <p>@Html.DisplayFor(modelItem => Model.JobRequirement)</p>
+            </div>
+        </div>
+
+        
+    </div>
+
+    
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.JobId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+
+
+</body>
+</html>

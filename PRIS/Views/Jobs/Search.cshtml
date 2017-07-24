@@ -1,0 +1,72 @@
+﻿@model IEnumerable<PRIS.Models.Job>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<h2>@ViewBag.Id</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @using (Html.BeginForm())
+        {
+            <th>
+                Title: @Html.TextBox("SearchString") <br />
+                <input type="submit" value="Filter" />
+            </th>
+        } 
+        <th>
+            @Html.DisplayNameFor(model => model.JobTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobRequirement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company.CompanyName)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobRequirement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.JobDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company.CompanyName)
+            </td>
+            <td>
+                @Html.ActionLink("View", "Details", new { id = item.JobId }) |
+                @Html.ActionLink("Apply", "InsertApplication", "SignUp", new { id = item.JobId, jid = @ViewBag.Id }, null) |
+                @Html.ActionLink("Save", "SavePost", "SignUp", new { id = item.JobId, jid = @ViewBag.Id }, null)
+            </td>
+        </tr>
+    }
+
+</table>

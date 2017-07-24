@@ -1,0 +1,117 @@
+﻿@model PRIS.Models.Job
+
+@{
+    Layout = null;
+    ViewBag.Title = "DeleteJobPost";
+}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+    <script src="~/Scripts/DateTime/jquery.datetimepicker.full.min.js"></script>
+    <script src="~/Scripts/DateTime/jquery.js"></script>
+    <link href="~/Scripts/DateTime/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.rtl.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.silver.min.css" />
+    <link rel="stylesheet" href="http://kendo.cdn.telerik.com/2017.1.118/styles/kendo.mobile.all.min.css" />
+
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://kendo.cdn.telerik.com/2017.1.118/js/kendo.all.min.js"></script>
+
+</head>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">PRIS</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = Model.CompanyId }, null)</li>
+                <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                <li class="active">@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                <li>@Html.ActionLink("Search Jobseeker", "viewJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">@Model.Company.CompanyName</span><span class="caret"></span></a>                            <ul class="dropdown-menu">
+
+
+                        <li><a href="#">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div style="width:80%; margin:auto; font-size:20px; font-family: 'Roboto Condensed', sans-serif;">
+    <div class="head">
+        <h1><strong>Delete Job Post</strong></h1>
+    </div>
+    <h3>Are you sure you want to delete this?</h3>
+    <div style="background-color:#E0F9FC; padding:20px;">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.JobTitle)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.JobTitle)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Salary)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.JobRequirement)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.JobRequirement)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.JobDescription)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.JobDescription)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Company.CompanyName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Company.CompanyName)
+            </dd>
+        </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="text-align:center; padding-bottom:15px">
+                <input type="button" class="btn btn-primary" value="Back" onclick="window.location.href='@Url.Action("DisplayAllJobs", "Real", new {id= Model.CompanyId})';" />
+                <input type="submit" class="btn btn-primary" value="Delete"  />
+            </div>
+        }
+    </div>
+    <div style="padding-bottom:30px"></div>
+</div>

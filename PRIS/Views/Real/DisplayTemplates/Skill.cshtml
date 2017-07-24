@@ -1,0 +1,14 @@
+﻿@model PRIS.Models.Skill
+
+@*
+    <div style="padding-bottom:10px">
+        @Html.EditorFor(x => x.SkillAcquired, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+    </div>
+*@
+
+<table class="table" style="padding-bottom:50px">
+    <tr>
+        <td style="width:50%">Skills</td>
+        <td style="width:50%">@Html.DisplayFor(x => x.SkillAcquired, new { htmlAttributes = new { @class = "form-control a" } })</td>
+    </tr>
+</table>

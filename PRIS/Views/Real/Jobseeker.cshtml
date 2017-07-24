@@ -1,0 +1,23 @@
+﻿@model PRIS.Models.Jobseeker
+@{
+    ViewBag.Title = "Jobseeker";
+}
+
+@Html.ValidationSummary(true)
+<h2>Jobseeker</h2>
+
+@Html.HiddenFor(x => x.JobseekerId)
+
+<p>
+    <label>Name</label>
+    @Html.TextBoxFor(x => x.Name)
+</p>
+
+<p>
+    <label>Salary</label>
+    @Html.TextBoxFor(x => x.Email)
+</p>
+
+<div id="phoneNumbers">
+    @Html.EditorFor(x => x.Languages)
+</div>

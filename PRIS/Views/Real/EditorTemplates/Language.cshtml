@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Language";
+}
+
+@model PRIS.Models.Language
+    @using PRIS.Models
+@Html.ValidationSummary(true)
+
+<div class="phoneNumber">
+    <p>
+        @Html.HiddenFor(model => model.LanguageId)
+        @Html.HiddenFor(model => model.JobseekerId)
+        @Html.EditorFor(x => x.LanguageLearned, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(x => x.DeleteLanguage, new { @class = "mark-for-delete" })
+        @Html.RemoveLink("Remove", "div.phoneNumber", "input.mark-for-delete")
+    </p>
+</div>

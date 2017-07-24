@@ -1,0 +1,52 @@
+﻿@model PRIS.Models.Company
+
+@{
+    ViewBag.Title = "CompanyHeader";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">My Profile</a></li>
+                    <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Search Jobseeker", "viewJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                    <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = Model.CompanyId }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> @Html.DisplayFor(modelItem => Model.CompanyName)<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navigation bar ends here-->
+
+</body>
+</html>

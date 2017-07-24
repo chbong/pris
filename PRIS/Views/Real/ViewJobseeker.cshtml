@@ -1,0 +1,178 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+@{
+    Layout = null;
+    ViewBag.Title = "searchJobseekers2";
+    int i = 1;
+    var idk = ViewBag.a;
+}
+
+<link href="~/Scripts/HierarchyView/bootstrap-combined.min.css" rel="stylesheet" />
+<script src="~/Scripts/HierarchyView/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+<link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+<style>
+        .tree {
+        min-height:20px;
+        padding:19px;
+        margin-bottom:20px;
+        background-color:#fbfbfb;
+        border:1px solid #999;
+        -webkit-border-radius:4px;
+        -moz-border-radius:4px;
+        border-radius:4px;
+        -webkit-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        -moz-box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05);
+        box-shadow:inset 0 1px 1px rgba(0, 0, 0, 0.05)
+    }
+    .tree li {
+        list-style-type:none;
+        margin:0;
+        padding:10px 5px 0 5px;
+        position:relative
+    }
+    .tree li::before, .tree li::after {
+        content:'';
+        left:-20px;
+        position:absolute;
+        right:auto
+    }
+    .tree li::before {
+        border-left:1px solid #999;
+        bottom:50px;
+        height:100%;
+        top:0;
+        width:1px
+    }
+    .tree li::after {
+        border-top:1px solid #999;
+        height:20px;
+        top:25px;
+        width:25px
+    }
+    .tree li span {
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        border:1px solid #999;
+        border-radius:5px;
+        display:inline-block;
+        padding:3px 8px;
+        text-decoration:none;
+        width:100%;           
+    }
+    .tree li.parent_li>span {
+        cursor:pointer
+    }
+    .tree>ul>li::before, .tree>ul>li::after {
+        border:0
+    }
+    .tree li:last-child::before {
+        height:30px
+    }
+    .tree li.parent_li>span:hover, .tree li.parent_li>span:hover+ul li span {
+        background:#eee;
+        border:1px solid #94a0b4;
+        color:#000
+    }
+</style>
+
+<div>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Profile", "CompantDetails", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Post New Jobs", "PostNewJobs", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Manage Jobs", "DisplayAllJobs", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li class="active">@Html.ActionLink("View Jobseeker", "viewJobseeker", "Real", new { id = ViewBag.Id }, null)</li>
+                    <li>@Html.ActionLink("Applied Jobseeker", "DisplayAppliedJobseeker", "Real", new { id = ViewBag.Id }, null)</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user">@ViewBag.Name</span><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<br />
+
+<div class="tree well" style="width:80%; margin:auto">
+    <ul>
+        <li>
+@foreach (var item in ViewBag.Try)
+{
+    <span style="background-color:lightyellow"><h3 class="icon-folder-open"></h3> <stong style="font-size:20px; font-weight:300">@item</stong></span>
+            <ul>
+                <li>
+                                                            @foreach (var item2 in Model)
+                                                            {
+                                                                if (item == item2.JobTitle)
+                                                                {
+                                                                    @*
+    <span>
+        <i class="icon-minus-sign" style="width:100%">@item2.Name
+            &emsp;&emsp;&emsp;
+            @item2.Total &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+            @Html.ActionLink("View", "EmployerViewJobseekerDetail", "Real", new { id = item2.JobseekerId, cid = ViewBag.Id, @class = "pull - right" }, null)
+            @Html.ActionLink("Test Result", "EmployerViewTestResult", "Real", new { id = item2.JobseekerId, cid = ViewBag.Id }, new { target = "_blank" })
+        </i>
+    </span>
+                                                                    *@
+
+                                                                    <span>
+                                                                        <div>
+                                                                            <table style="font-size:15px">
+                                                                                <tr>
+                                                                                    <td style="width:30%">@item2.Name</td>
+                                                                                    <td style="width:25%">@item2.Total</td>
+                                                                                    <td style="width:5%">@Html.ActionLink("View", "EmployerViewJobseekerDetail", "Real", new { id = item2.JobseekerId, cid = ViewBag.Id}, null)</td>
+                                                                                    <td style="width:5%">@Html.ActionLink("Test Result", "EmployerViewTestResult", "Real", new { id = item2.JobseekerId, cid = ViewBag.Id }, new { target = "_blank" })</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                    </div>
+                                                                </span>
+                                                                    <br />
+                                                    }
+                                                }  <br />                
+                                            </li>    
+                                </ul>}
+            </li>
+        </ul>
+</div>
+
+
+
+                            <script>
+                                $(function () {
+                                    $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
+                                    $('.tree li.parent_li > span').on('click', function (e) {
+                                        var children = $(this).parent('li.parent_li').find(' > ul > li');
+                                        if (children.is(":visible")) {
+                                            children.hide('fast');
+                                            $(this).attr('title', 'Expand this branch').find(' > i').addClass('icon-plus-sign').removeClass('icon-minus-sign');
+                                        } else {
+                                            children.show('fast');
+                                            $(this).attr('title', 'Collapse this branch').find(' > i').addClass('icon-minus-sign').removeClass('icon-plus-sign');
+                                        }
+                                        e.stopPropagation();
+                                    });
+                                });
+                            </script>

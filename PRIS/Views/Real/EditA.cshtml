@@ -1,0 +1,69 @@
+﻿@model PRIS.Models.Jobseeker
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<script src="~/Content/CustomJS.js"></script>
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Department</legend>
+
+        @Html.HiddenFor(model => model.JobseekerId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNo)
+            @Html.ValidationMessageFor(model => model.PhoneNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Languages)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Languages)
+            @Html.ValidationMessageFor(model => model.Languages)
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add New Employee</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.EditorForModel()
+    <p>
+        <button type="submit">Create Employee</button>
+    </p>
+}

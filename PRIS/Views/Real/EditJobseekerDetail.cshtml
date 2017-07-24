@@ -1,0 +1,62 @@
+﻿@model PRIS.Models.Jobseeker
+
+@{
+    Layout = null;
+    ViewBag.Title = "JobseekerPageTwo";
+}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="~/Scripts/JobseekerSignUp/JavaScript.js"></script>
+<script src="~/Content/CustomJS.js"></script>
+<link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">PRIS</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li class="active">@Html.ActionLink("My Profile", "ViewJobseekerDetails", "Real", new { id = Model.JobseekerId }, null)</li>
+                <li>@Html.ActionLink("Job Search", "JobseekerJobSearch", "Real", new { id = Model.JobseekerId }, null)</li>
+                <li>@Html.ActionLink("Job Application", "ViewApplication", "Real", new { id = Model.JobseekerId }, null)</li>
+                <li>@Html.ActionLink("Save Application", "ViewSavePost", "Real", new { id = Model.JobseekerId }, null)</li>
+                <li>@Html.ActionLink("Psychometric Test", "JobseekerViewTestResult", "Real", new { id = Model.JobseekerId }, null)</li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.Name<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Real/JobseekerMain2">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="head">
+    <h1><stong>Jobseeker Sign Up</stong></h1>
+</div>
+@using (Html.BeginForm("EditJobseekerDetail", "Real", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.AntiForgeryToken()
+
+        @Html.EditorForModel()
+        <p>
+            <div style="text-align:center; padding-bottom:30px">
+                <input type="button" class="btn btn-primary" value="Back" onclick="window.location.href='@Url.Action("ViewJobseekerDetails", "Real", new { id = Model.JobseekerId })';" />
+                <input type="submit" class="btn btn-primary" value="Save" />
+            </div>
+        </p>
+    </div>
+}

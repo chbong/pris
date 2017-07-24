@@ -1,0 +1,439 @@
+﻿@model PRIS.Models.Jobseeker
+
+@{
+    Layout = null;
+    ViewBag.Title = "Delete";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+    <script src="~/Script/JavaScript.js"></script>
+    <style>
+        th,td
+        {
+            font-size: 20px;
+    	    width:50%;
+        }
+        th
+        {
+            width:30%;
+    	    color:grey;
+            font-weight: normal
+        }
+        td
+        {
+            width:70%;
+    	    color:black;
+        }
+        body {
+            background: #16A085;
+        }
+
+        /* Profile container */
+        .profile {
+            margin: 20px 0;
+        }
+
+        /* Profile sidebar */
+        .profile-sidebar {
+            padding: 20px 0 10px 0;
+            background: #fff;
+        }
+
+        .col-md-3 {
+            padding: 0 0 0 15px;
+        }
+
+        .profile-userpic img {
+            float: none;
+            margin: 0 auto;
+            width: 50%;
+            height: 50%;
+            -webkit-border-radius: 50% !important;
+            -moz-border-radius: 50% !important;
+            border-radius: 50% !important;
+        }
+
+        .profile-usertitle {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .profile-usertitle-name {
+            color: #5a7391;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .profile-usertitle-job {
+            text-transform: uppercase;
+            color: #5b9bd1;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .profile-usermenu {
+            margin-top: 30px;
+            padding: 0px !important;
+        }
+
+            .profile-usermenu ul li {
+                border-bottom: 1px solid #f0f4f7;
+            }
+
+                .profile-usermenu ul li:last-child {
+                    border-bottom: none;
+                }
+
+                .profile-usermenu ul li a {
+                    color: #93a3b5;
+                    font-size: 14px;
+                    font-weight: 400;
+                }
+
+                    .profile-usermenu ul li a i {
+                        margin-right: 8px;
+                        font-size: 14px;
+                    }
+
+                    .profile-usermenu ul li a:hover {
+                        background-color: #fafcfd;
+                        color: #5b9bd1;
+                    }
+
+                .profile-usermenu ul li.active {
+                    border-bottom: none;
+                }
+
+                    .profile-usermenu ul li.active a {
+                        color: #5b9bd1;
+                        background-color: #f6f9fb;
+                        border-left: 2px solid #5b9bd1;
+                        margin-left: -2px;
+                    }
+
+        /* order Content */
+        .order-content {
+            padding: 20px;
+            background: #F6F9FB;
+            min-height: 460px;
+        }
+
+        .form_main {
+            width: 100%;
+        }
+
+            .form_main h4 {
+                font-family: roboto;
+                font-size: 20px;
+                font-weight: 300;
+                margin-bottom: 15px;
+                margin-top: 20px;
+                text-transform: uppercase;
+            }
+
+        .heading {
+            border-bottom: 1px solid #A9A59F;
+            padding-bottom: 9px;
+            position: relative;
+        }
+
+            .heading span {
+                background: #6D6C6A none repeat scroll 0 0;
+                bottom: -2px;
+                height: 3px;
+                left: 0;
+                position: absolute;
+                width: 75px;
+            }
+
+        .form {
+            border-radius: 7px;
+            padding: 6px;
+        }
+
+        .txt[type="text"] {
+            border: 1px solid #ccc;
+            margin: 5px 0;
+            padding: 4px 0 4px 5px;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .txt[type="password"] {
+            border: 1px solid #ccc;
+            margin: 5px 0;
+            padding: 4px 0 4px 5px;
+            border-radius: 5px;
+            width: 80%;
+        }
+
+        .txt2:hover {
+            background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+            color: #949390;
+            transition: all 0.5s ease 0s;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">PRIS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active">@Html.ActionLink("My Profile", "ViewJobseekerDetails", "Real", new { id = @Model.JobseekerId }, null)</li>
+                    <li>@Html.ActionLink("Job Search", "JobseekerJobSearch", "Real", new { id = @Model.JobseekerId }, null)</li>
+                    <li>@Html.ActionLink("Job Application", "ViewApplication", "Real", new { id = @Model.JobseekerId }, null)</li>
+                    <li>@Html.ActionLink("Save Application", "ViewSavePost", "Real", new { id = @Model.JobseekerId }, null)</li>
+                    @*<li>@Html.ActionLink("Psychometric Test", "JobseekerViewTestResult", "Real", new { id = @Model.JobseekerId }, null)</li>*@
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> @Model.Name <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="~/Real/JobseekerMain2">Sign Out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--Navigation bar ends here-->
+    <div class="container">
+        <div class="row profile">
+            <div class="col-md-3">
+                <div class="profile-sidebar">
+                    <!-- SIDEBAR USERPIC -->
+                    <div class="profile-userpic">
+                        <!-- <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt=""> -->
+
+                    </div>
+                    <!-- END SIDEBAR USERPIC -->
+                    <!-- SIDEBAR USER TITLE -->
+                    <div class="profile-usertitle">
+                        <!--Profile Picture-->
+                        <div>
+                            @if (Model.Resume != null)
+                            {
+                                var base64 = Convert.ToBase64String(Model.Resume);
+                                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                                <img src='@imgsrc' style="max-height:200px; max-width:200px">
+                            }
+                            else
+                            {
+                                <img src="@Url.Content("~/Images/dummy-image.jpg")" alt="IMAGES" style="max-height:200px; max-width:200px" />
+                            }
+                        </div>
+                        <!--Name-->
+                        <div class="profile-usertitle-name">
+                            <span class="hidden-xs">@Model.Name</span>
+                        </div>
+                        <div class="profile-usertitle-job">
+                        </div>
+                    </div>
+                    <!-- END SIDEBAR USER TITLE -->
+                    <!-- SIDEBAR MENU -->
+                    <div class="profile-usermenu">
+                        <ul class="nav">
+                            <li>
+                                <a href="#" id="personal"  style="font-size:18px">
+                                    <i class="glyphicon glyphicon-home"></i>Personal
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" id="qualification" style="font-size:18px">
+                                    <i class="glyphicon glyphicon-user"></i>Education
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" id="attachment" style="font-size:18px">
+                                    <i class="glyphicon glyphicon-ok"></i>Preferences
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- END MENU -->
+                </div>
+            </div>
+            <!--Side bar ends here-->
+            <!--Personal starts-->
+            <div class="col-md-9 order-content" id="personalDiv">
+                <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                    <h4 class="heading"  style="font-size:30px"><strong>Personal Information</strong><span></span></h4>
+                    <div class="form">                        
+                        <table  class="table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <td>@Model.Name</td>
+                                </tr>
+                            </thead>
+                                <tr>
+                                    <th>Email</th>
+                                    <td>@Model.Email</td>
+                                </tr>
+                                <tr>
+                                    <th>Phone Number</th>
+                                    <td>@Model.PhoneNo</td>
+                            </tr>
+                            <tr>
+                                <th>Address</th>
+                                <td>@Model.Address</td>
+                            </tr>
+                            <tr>
+                                <th>Resume</th>
+                                @if (Model.Picture != null)
+                                {
+
+                                    var base642 = Convert.ToBase64String(Model.Picture);
+                                    var imgsrc2 = string.Format("data:application/pdf;base64,{0}", base642);
+
+                                    <td>
+                                        <a href='@imgsrc2'>Download</a>
+                                    </td>
+                                }
+
+                                else
+                                {
+                                    <td>No Resume Attached</td>
+                                }
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td style="padding-top:6%"><input type="button" style="font-size:18px" class="btn btn-primary" value="Edit" onclick="window.location.href='@Url.Action("EditJobseekerDetail", "Real", new {id = Model.JobseekerId})';" /></td>
+                            </tr>
+                    </table>
+                        
+
+                    </div>
+                    <div style="text-align:center">
+                        <br />
+                    </div>
+                </div>
+            </div>
+            <!--Personal ends here-->
+            <!--Qualification starts-->
+            <div class="col-md-9 order-content" id="qualificationDiv" style="display:none">
+                <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                    <h4 class="heading" style="font-size:30px"><strong>Education </strong><span></span></h4>
+                    <div class="form">
+
+                        <!-- Education-->
+                        <div class="form-group" style="padding:0px;">
+                            <h4 style="padding-left:15px; padding-bottom:10px; font-weight: bold; font-size:28px">Qualification</h4>
+                            <!-- Qualification-->
+                            <div class="col-md-6" style="font-size:20px">
+                                <p><strong>Qualification</strong></p>
+                                
+                            </div>
+                            <div class="col-md-6" style="font-size:20px">
+                                <p><strong>Field of Study</strong></p>
+                            </div>
+                            <div class="col-md-12">
+                                @Html.DisplayFor(model => model.Qualifications)
+                            </div>
+
+                            <div style="padding-top:0px">
+                                <br /><br /><h4 style="padding-left:15px; padding-top:30%; font-weight: bold; font-size:28px">Languages Learned</h4>
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(model => model.Languages)
+                                </div>
+                            </div>
+
+                            <div style="padding-top:10%">
+                                <br /><br /><h4 style="padding-left:15px; padding-top:20%; font-weight: bold; font-size:28px">Skills Acquired</h4>
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(model => model.Skills)
+                                </div>
+                            </div>
+
+                            <div style="padding-bottom:30px">
+                                <br /><br /><h4 style="padding-left:15px; padding-top:25%; font-weight: bold; font-size:28px">Working Experiences</h4>
+                                <div class="col-md-12">
+                                    @Html.DisplayFor(model => model.WorkingExperiences)
+                                </div>
+                            </div>
+                                
+                            </div>
+                </div>
+            </div>
+                </div>
+            <!--Qualification ends here-->
+            <!--Attachment starts-->
+            <div class="col-md-9 order-content" id="attachmentDiv" style="display:none">
+                <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                    <h4 class="heading" style="font-size:30px"><strong>Preferences</strong><span></span></h4>
+                    <div class="form">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Preferred Field</th>
+                                    <td>@Model.PreferredField</td>
+                                </tr>
+                            </thead>
+                            <tr>
+                                <th>Preferred Location</th>
+                                <td>@Model.PreferredLocation</td>
+                            </tr>
+                            <tr>
+                                <th>Preferred Salary</th>
+                                <td>@Model.PreferredSalary</td>
+                            </tr>
+                            
+                        </table>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+            <!--Attachment ends here-->
+        </div>
+    </div>
+
+    <script>
+            $(document).ready(function () {
+                $("#personal").click(function () {
+                    $("#qualificationDiv").hide();
+                    $("#attachmentDiv").hide();
+                    $("#personalDiv").show();
+                    return false;
+                });
+
+                $("#qualification").click(function () {
+                    $("#personalDiv").hide();
+                    $("#attachmentDiv").hide();
+                    $("#qualificationDiv").show();
+                    return false;
+                });
+
+                $("#attachment").click(function () {
+                    $("#personalDiv").hide();
+                    $("#qualificationDiv").hide();
+                    $("#attachmentDiv").show();
+                    return false;
+                });
+            });
+    </script>
+</body>
+</html>

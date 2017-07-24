@@ -1,0 +1,89 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "JobseekerLogin";
+}
+
+@model PRIS.Models.Jobseeker
+@Html.ValidationSummary(true)
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+
+    <style>
+    </style>
+
+    <link href="~/Scripts/JobseekerSignUp/StyleSheet1.css" rel="stylesheet" />
+
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="~/Real/EmployerMainPage">Home</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="~/Real/JobseekerPageTwo"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li class="active"><a href="~/Real/JobseekerLoginIn"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div style="margin:10%">
+        @using (Html.BeginForm("JobseekerLogin", "Real", FormMethod.Post))
+            {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+
+            if (ViewBag.Error != null)
+            {
+                <p>@ViewBag.Error</p>
+            }
+            <div class="form-horizontal">
+
+                @*<hr />*@
+
+                <div style="background-color:#F6F9FB; padding-bottom:50px; padding-right:50px">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <h1 style="padding-top:100px;  text-align:center; padding-bottom:30px; padding-left:130px "><strong>Jobseeker Login</strong></h1>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group"  style="text-align:center">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login" class="btn btn-default" id="login"  style="text-align:center"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</body>
+<script>
+
+</script>

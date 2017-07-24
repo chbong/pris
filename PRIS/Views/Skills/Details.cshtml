@@ -1,0 +1,34 @@
+﻿@model PRIS.Models.Skill
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Skill</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SkillAcquired)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SkillAcquired)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jobseeker.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jobseeker.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SkillId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

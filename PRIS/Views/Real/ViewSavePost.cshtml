@@ -1,0 +1,141 @@
+﻿@model IEnumerable<PRIS.Models.SignUpViewModel>
+
+@{
+    Layout = null;
+    ViewBag.Title = "ViewApplication";
+    int id = ViewBag.Id;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ProfilePage</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Script/StyleSheet1.css">
+    <script src="~/Script/JavaScript.js"></script>
+    <link href="~/Scripts/JobDisplayPanel/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Scripts/Button.css" rel="stylesheet" />
+
+    <script src="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700"></script>
+    <link href="~/Scripts/JobDisplayPanel/StyleSheet1.css" rel="stylesheet" />
+    <link href="~/Scripts/Button/StyleSheet1.css" rel="stylesheet" />
+    <script src="~/Scripts/RotatingCard/JavaScript.js"></script>
+    <link href="~/Scripts/RotatingCard/StyleSheet1.css" rel="stylesheet" />
+</head>
+
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">PRIS</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("My Profile", "ViewJobseekerDetails", "Real", new { id = id }, null)</li>
+                <li>@Html.ActionLink("Job Search", "JobseekerJobSearch", "Real", new { id = id }, null)</li>
+                <li>@Html.ActionLink("Job Application", "ViewApplication", "Real", new { id = id }, null)</li>
+                <li class="active">@Html.ActionLink("Save Application", "ViewSavePost", "Real", new { id = id }, null)</li>
+                @*<li>@Html.ActionLink("Psychometric Test", "JobseekerViewTestResult", "Real", new { id = ViewBag.Id }, null)</li>*@
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span>@ViewBag.Name<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="~/Real/JobseekerMain2">Sign Out</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-10 col-sm-offset-1">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 col-sm-6">
+                        <div class="card-container">
+                            <div class="card">
+                                <div class="front">
+                                    <div class="cover">
+                                        <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg" />
+                                    </div>
+                                    <div class="user">
+                                        @{
+                                            if (item.CompanyLogo == null)
+                                            {
+                                                <img src="@Url.Content("~/Images/no-logo-MANUFACTURER.png")" alt="IMAGES" style="max-height:200px; max-width:200px" />
+                                            }
+                                            else
+                                            {
+                                                var base64 = Convert.ToBase64String(item.CompanyLogo);
+                                                var imgsrc = string.Format("data:image/gif;base64,{0}", base64);
+                                                <img src='@imgsrc' style="max-height:200px; max-width:200px">
+                                            }
+
+                                        }
+
+                                        @*{
+                                            var base64String = Convert.ToBase64String(item.CompanyLogo);
+                                            var imgsrc = string.Format("data:file/gif;base64,{0}", base64String);
+                                        }
+
+                                        <img class="img-circle" src='@imgsrc' style="max-height:200px; max-width:200px" />
+                                        @*<img class="img-circle" src="https://www2.mmu.ac.uk/media/mmuacuk/style-assets/images/r-research/profile-Zeyad.jpg" />*@
+                                    </div>
+                                    <div class="content">
+                                        <div class="main">
+                                            <h3 class="name">@Html.DisplayFor(modelItem => item.JobTitle)</h3>
+                                            <p class="profession">@Html.DisplayFor(modelItem => item.CompanyName)</p>
+                                            <p class="text-center">@Html.DisplayFor(modelItem => item.ShortDescription)</p>
+                                        </div>
+                                        <div class="footer">
+                                            <i class="fa fa-mail-forward"></i> Auto Rotation
+                                        </div>
+                                    </div>                                
+                                </div> <!-- end front panel -->
+                                <div class="back">
+                                    <div class="cover">
+                                        <img src="https://www.clipartsgram.com/image/129556292-kyz84k3.jpg" />
+                                    </div>
+                                    <div class="content" style="padding-top:50px">
+                                        <div class="main">
+                                            <h4 class="text-center">Salary: RM @Html.DisplayFor(modelItem => item.Salary)</h4>
+                                            <p class="text-center">Location: @Html.DisplayFor(modelItem => item.Location)</p>
+                                            <p class="text-center">Posting Date: @Html.DisplayFor(modelItem => item.PostingDate)</p>
+
+                                            <div class="stats-container">
+                                                <div class="stats" style="width:50%">
+                                                    <h4></h4>
+                                                    @Html.ActionLink("View", "JobseekerViewJobDetailFromSave", "Real", new { id = id, jid = item.JobId }, null)
+                                                    @*<p><button class="open-AddBookDialog" type="button" data-toggle="modal" href="#view" data-id=@item.JobId>View</button>*@
+
+                                                </div>
+                                                <div class="stats" style="width:50%">
+                                                    <h4></h4>
+                                                    <p>
+                                                        @Html.ActionLink("Apply", "InsertApplicationFromSave", "Real", new { id = item.JobId, jid = @ViewBag.Id }, new { onclick = "return confirm('Are you sure you wish to apply for this job?');" })
+                                                        @*<button type="button" data-toggle="modal" data-target="#edit">Edit</button>*@
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div> <!-- end back panel -->
+                            </div> <!-- end card -->
+                        </div> <!-- end card-container -->
+                    </div> <!-- end col sm 3 -->
+
+                                            }
+            </div>
+        </div>
+    </div>
+</body>

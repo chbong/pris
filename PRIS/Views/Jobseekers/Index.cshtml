@@ -1,0 +1,112 @@
+﻿@model IEnumerable<PRIS.Models.Jobseeker>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobseekerId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.JobseekerGender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FieldOfStudy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredSalary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreferredField)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Picture)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Resume)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picture)
+        </td>    
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.JobseekerGender)
+        </td>   
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>   
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Qualification)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FieldOfStudy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreferredLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreferredSalary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreferredField)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Picture)
+        </td>
+        <td>
+            <img src='<%= Url.Action("Insert", "image", new { id = ViewData["imageID"] } ) %>' /> 
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.JobseekerId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.JobseekerId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.JobseekerId })
+        </td>
+    </tr>
+}
+
+</table>

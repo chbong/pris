@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f045f6141e56449bbdab49393322de9e" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="SignUpModel.Jobseeker" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SignUpModel.Language" Width="1.5" PointX="0.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SignUpModel.Skill" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SignUpModel.WorkingExperience" Width="1.5" PointX="0.5" PointY="3.625" IsExpanded="true" />
+        <AssociationConnector Association="SignUpModel.JobseekerLanguage" />
+        <AssociationConnector Association="SignUpModel.JobseekerSkill" />
+        <AssociationConnector Association="SignUpModel.JobseekerWorkingExperience" />
+        <EntityTypeShape EntityType="SignUpModel.Application" Width="1.5" PointX="8.125" PointY="0.5" />
+        <EntityTypeShape EntityType="SignUpModel.Company" PointX="10.875" PointY="4.625" Width="1.5" />
+        <EntityTypeShape EntityType="SignUpModel.Save" Width="1.5" PointX="8.125" PointY="2.875" />
+        <EntityTypeShape EntityType="SignUpModel.Job" Width="1.5" PointX="10.875" PointY="0.5" />
+        <AssociationConnector Association="SignUpModel.CompanyJob" />
+        <AssociationConnector Association="SignUpModel.JobseekerApplication" />
+        <AssociationConnector Association="SignUpModel.JobApplication" />
+        <AssociationConnector Association="SignUpModel.JobseekerSave" />
+        <AssociationConnector Association="SignUpModel.JobSave" />
+        <EntityTypeShape EntityType="SignUpModel.PreferredLocation" Width="1.5" PointX="2.125" PointY="11.25" />
+        <EntityTypeShape EntityType="SignUpModel.Test" Width="1.5" PointX="5.25" PointY="6.5" />
+        <AssociationConnector Association="SignUpModel.JobseekerTest" />
+        <EntityTypeShape EntityType="SignUpModel.Qualification" Width="1.5" PointX="7.625" PointY="6.5" />
+        <AssociationConnector Association="SignUpModel.JobseekerQualification" />
+        <EntityTypeShape EntityType="SignUpModel.TestQuestion" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SignUpModel.TestAnswer" Width="1.5" PointX="3" PointY="6.75" />
+        <AssociationConnector Association="SignUpModel.TestQuestionTestAnswer" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
